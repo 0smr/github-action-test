@@ -27,18 +27,21 @@ jobs:
 #             os: ubuntu-latest
 #           - platform: android
 #             os: ubuntu-latest
-#           - platform: msvc2019_64
-#             os: windows-latest
 #           - platform: msvc2019
 #             os: windows-latest
 #           - platform: mingw81_32
 #             os: windows-latest
 #             ver: win32_mingw81
+#           - platform: mingw81_64
+#             os: windows-latest
+#             arch: win64_mingw81
+#             spec: win32-mingw
 #           - platform: clang_64
 #             os: macos-latest
-          - platform: mingw81_64
+          - platform: msvc2019_64
             os: windows-latest
-            arch: win64_mingw81
+            arch: win64_msvc2019_64
+            spec: win32-msvc
             
     runs-on: ${{matrix.os}}
     steps:
@@ -70,13 +73,13 @@ jobs:
       
       - name: qmake
         run: |
-          qmake CONFIG+=install_ok QT_PLATFORM=${{matrix.platform}} "QT_TOOL_PATH=${{github.workspace}}/Qt/Tools" github-action-test.pro
+          qmake CONFIG+=qtquickcompiler QT_PLATFORM=${{matrix.platform}} "QT_TOOL_PATH=${{github.workspace}}\..\Qt\Tools" github-action-test.pro
 #          ${{steps.qt.outputs.make}} qmake_all
       - name: qmake all and make 
         if: ${{matrix.platform}} == mingw81_64
         run: |        
-          "${{github.workspace}}/Qt/Tools/${{matrix.platform}}/bin/mingw32-make.exe" qmake_all
-          "${{github.workspace}}/Qt/Tools/${{matrix.platform}}/bin/mingw32-make.exe" -j8
+          "${{github.workspace}}\..\Qt\Tools\QtCreator\bin\jom.exe" qmake_all
+          "${{github.workspace}}\..\Qt\Tools\QtCreator\bin\jom.exe"
 #       - name: make module
 #         run: |
 #           ${{steps.qt.outputs.make}}
