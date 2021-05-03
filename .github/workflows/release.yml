@@ -56,7 +56,13 @@ jobs:
         with:
           submodules: recursive
       # - uses: actions/setup-python@v2.2.2
-      
+      - name: Cache Qt
+        id: cache-qt
+        uses: actions/cache@v1
+        with:
+          path: ../Qt
+          key: ${{ matrix.os }}-QtCache 
+
       - name: Install Qt
         uses: jurplel/install-qt-action@v2.13.0
         with:
@@ -65,6 +71,7 @@ jobs:
           extra:   '--external 7z'
           tools:   'tools_ifw,4.0,qt.tools.ifw.40 tools_qtcreator,4.14.1-0,qt.tools.qtcreator'
           setup-python: 'true'
+          cached:  ${{ steps.cache-qt.outputs.cache-hit }}
       - run: ls ../Qt
           
       # - name: dirvs
