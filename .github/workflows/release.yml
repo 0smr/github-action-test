@@ -67,7 +67,7 @@ jobs:
         uses: jurplel/install-qt-action@v2.13.0
         with:
           version: '${{ matrix.version }}'
-          arch:    '${{ env.arch }}'
+          arch:    '${{ matrix.arch }}'
           extra:   '--external 7z'
           tools:   'tools_ifw,4.0,qt.tools.ifw.40 tools_qtcreator,4.14.1-0,qt.tools.qtcreator'
           setup-python: 'true'
@@ -83,7 +83,6 @@ jobs:
       #     set path=%path%;%qtdir%\bin;"C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\${{steps.dirvs.outputs.ver}}\bin\Hostx64\x64"
       #     set QMakeSpec=${{matrix.spec}}
 
-      - uses: actions/checkout@v1
       - name: add cl.exe
         uses: ilammy/msvc-dev-cmd@v1
       - name: build
