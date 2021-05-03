@@ -23,10 +23,10 @@ jobs:
           # - gcc_64
           # - android
           # - msvc2019
-          # - msvc2019_64
+          - msvc2019_64
           # - mingw81_32
           # - clang_64
-          - mingw81_64
+          # - mingw81_64
 
         include:
 #           - platform: gcc_64
