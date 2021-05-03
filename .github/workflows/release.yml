@@ -55,7 +55,7 @@ jobs:
         uses: actions/checkout@v1
         with:
           submodules: recursive
-      - uses: actions/setup-python@v1
+      - uses: actions/setup-python@v2.2.2
       
       - name: Install Qt
         uses: jurplel/install-qt-action@v2.13.2
@@ -82,9 +82,8 @@ jobs:
       - name: build
         run: qmake "CONFIG+=qtquickcompiler"
 
-      # - uses: actions/checkout@v2
-      # - name: Setup tmate session
-      #   uses: mxschmitt/action-tmate@v3
+      - name: Setup tmate session
+        uses: mxschmitt/action-tmate@v3
 
       # - run: set path=%path%;"D:\a\github-action-test\Qt\Tools\QtCreator\bin";
       # - run: jom.exe -f qmake_all && jom.exe
