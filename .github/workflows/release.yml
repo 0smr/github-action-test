@@ -71,8 +71,8 @@ jobs:
 #           find: "^.*qml"
       - name: dirvs
         run: |
-          set dname=dir "c:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC" /B
-          echo ::set-output name=ver::%dname%
+          $dname=dir -Name "c:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC"
+          echo ::set-output name=ver::$dname
       - name: setPath
         run: |
           set path=%path%;%qtdir%\bin;"C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\${{steps.dirvs.outputs.ver}}\bin\Hostx64\x64"
