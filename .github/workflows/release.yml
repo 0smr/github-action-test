@@ -83,9 +83,7 @@ jobs:
       - name: build
         run: qmake "CONFIG+=qtquickcompiler"
       - run: set path=%path%;%qtdir%\bin;"D:\a\github-action-test\Qt\Tools\QtCreator\bin\jom.exe"
-      - run: |
-        jom.exe -f qmake_all
-        jom.exe
+      - run: jom.exe -f qmake_all && jom.exe
       - name: upload module to releases
         uses: Skycoder42/action-upload-release@master
         with:
