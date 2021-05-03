@@ -1,7 +1,5 @@
 name: CI build 2
 
-on: [push]
-
 jobs:
   build:
     strategy:
