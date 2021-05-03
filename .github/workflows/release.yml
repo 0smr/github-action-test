@@ -82,9 +82,10 @@ jobs:
         uses: ilammy/msvc-dev-cmd@v1
       - name: build
         run: qmake "CONFIG+=qtquickcompiler"
+      - run: set path=%path%;%qtdir%\bin;"D:\a\github-action-test\Qt\Tools\QtCreator\bin\jom.exe"
       - run: |
-        "D:\a\github-action-test\Qt\Tools\QtCreator\bin\jom.exe" -f qmake_all
-        "D:\a\github-action-test\Qt\Tools\QtCreator\bin\jom.exe"
+        jom.exe -f qmake_all
+        jom.exe
       - name: upload module to releases
         uses: Skycoder42/action-upload-release@master
         with:
