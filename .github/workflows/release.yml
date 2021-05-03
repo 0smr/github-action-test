@@ -1,7 +1,7 @@
 name: CI build
 
-on: [push]
-on: 
+on:
+  push:
   workflow_dispatch:
     inputs:
       logLevel:
