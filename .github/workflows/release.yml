@@ -83,6 +83,11 @@ jobs:
       - name: build
         run: qmake "CONFIG+=qtquickcompiler"
       - run: set path=%path%;"D:\a\github-action-test\Qt\Tools\QtCreator\bin";
+
+      - uses: actions/checkout@v2
+      - name: Setup tmate session
+        uses: mxschmitt/action-tmate@v3
+
       - run: dir D:\a\github-action-test\Qt\Tools\QtCreator\bin && dir D:\a\github-action-test && dir D:\a\github-action-test\Qt
       - run: jom.exe -f qmake_all && jom.exe
       - name: upload module to releases
