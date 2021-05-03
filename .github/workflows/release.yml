@@ -81,10 +81,10 @@ jobs:
       - name: add cl.exe
         uses: ilammy/msvc-dev-cmd@v1
       - name: build
-        run: |
-          qmake
-      - run: "D:/a/github-action-test/Qt/Tools/QtCreator/bin/jom.exe" -f qmake_all
-      - run: "D:/a/github-action-test/Qt/Tools/QtCreator/bin/jom.exe"
+        run: qmake "CONFIG+=qtquickcompiler"
+      - run: |
+        "D:\a\github-action-test\Qt\Tools\QtCreator\bin\jom.exe" -f qmake_all
+        "D:\a\github-action-test\Qt\Tools\QtCreator\bin\jom.exe"
       - name: upload module to releases
         uses: Skycoder42/action-upload-release@master
         with:
