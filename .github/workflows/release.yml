@@ -55,21 +55,16 @@ jobs:
         uses: actions/checkout@v1
         with:
           submodules: recursive
-      - uses: actions/setup-python@v1
       
       - name: Install Qt
-        uses: jurplel/install-qt-action@v2.13.0
+        uses: jurplel/install-qt-action@v2.13.2
         with:
-          version: ${{ matrix.version }}
-          arch:    ${{ env.arch }}
-          extra:   --external 7z
+          version: '${{ matrix.version }}'
+          arch:    '${{ env.arch }}'
+          extra:   '--external 7z'
           tools:   'tools_ifw,4.0,qt.tools.ifw.40 tools_qtcreator,4.14.1-0,qt.tools.qtcreator'
+          setup-python: 'true'
           
-#       - name: Find String
-#         id: fstr
-#         uses: nguyenvanuyn96/str-find-action@master
-#         with:
-#           find: "^.*qml"
       # - name: dirvs
       #   run: |
       #     $dname=dir -Name "c:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC"
