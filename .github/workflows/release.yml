@@ -17,7 +17,7 @@ jobs:
       fail-fast: false
       matrix:
         version:
-          - 5.15.2
+          - 5.15.0
           
         platform:
           # - gcc_64
@@ -65,7 +65,7 @@ jobs:
           extra:   '--external 7z'
           tools:   'tools_ifw,4.0,qt.tools.ifw.40 tools_qtcreator,4.14.1-0,qt.tools.qtcreator'
           setup-python: 'true'
-      - run: tree ../
+      - run: ls -las ../Qt
           
       # - name: dirvs
       #   run: |
