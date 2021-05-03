@@ -70,7 +70,7 @@ jobs:
 #         with:
 #           find: "^.*qml"
       - name: dirvs
-      - run: |
+        run: |
           set dname=dir "c:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC" /B
           echo ::set-output name=ver::%dname%
       - name: setPath
