@@ -1,9 +1,6 @@
 name: CI build
 
-on:
-  push:
-#     tags:        
-#       - v*
+on: [push]
 
 jobs:
   build:
