@@ -63,6 +63,7 @@ jobs:
           version: ${{ matrix.version }}
           arch:    ${{ env.arch }}
           extra:   --external 7z
+          tools:   'qt.tools.qtcreator'
           
 #       - name: Find String
 #         id: fstr
@@ -82,13 +83,12 @@ jobs:
         uses: ilammy/msvc-dev-cmd@v1
       - name: build
         run: qmake "CONFIG+=qtquickcompiler"
-      - run: set path=%path%;"D:\a\github-action-test\Qt\Tools\QtCreator\bin";
 
       - uses: actions/checkout@v2
       - name: Setup tmate session
         uses: mxschmitt/action-tmate@v3
 
-      - run: dir D:\a\github-action-test\Qt\Tools\QtCreator\bin && dir D:\a\github-action-test && dir D:\a\github-action-test\Qt
+      - run: set path=%path%;"D:\a\github-action-test\Qt\Tools\QtCreator\bin";
       - run: jom.exe -f qmake_all && jom.exe
       - name: upload module to releases
         uses: Skycoder42/action-upload-release@master
