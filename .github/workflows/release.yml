@@ -77,7 +77,7 @@ jobs:
       #   run: |
       #     set path=%path%;%qtdir%\bin;"C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\${{steps.dirvs.outputs.ver}}\bin\Hostx64\x64"
       #     set QMakeSpec=${{matrix.spec}}
-        uses: actions/checkout@v1
+      - uses: actions/checkout@v1
       - name: add cl.exe
         uses: ilammy/msvc-dev-cmd@v1
       - name: build
