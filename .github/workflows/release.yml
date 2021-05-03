@@ -77,8 +77,8 @@ jobs:
       #   run: |
       #     set path=%path%;%qtdir%\bin;"C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\${{steps.dirvs.outputs.ver}}\bin\Hostx64\x64"
       #     set QMakeSpec=${{matrix.spec}}
-      - name: Add msbuild to PATH
-        uses: microsoft/setup-msbuild@v1.0.2
+      - uses: actions/checkout@v1
+      - uses: ilammy/msvc-dev-cmd@v1
       - name: build
         run: |
           qmake && make
