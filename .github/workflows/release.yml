@@ -71,7 +71,6 @@ jobs:
         uses: Skycoder42/action-upload-release@master
         with:
           repo_token: ${{secrets.GITHUB_TOKEN}}
-          directory: ${{steps.qt.outputs.outdir}}
           platform: ${{matrix.platform}}
           asset_name: test-${{matrix.platform}}-${{matrix.version}}
           tag: 'v0.0.1'
