@@ -55,6 +55,7 @@ jobs:
         uses: actions/checkout@v1
         with:
           submodules: recursive
+      - uses: actions/setup-python@v1
       
       - name: Install Qt
         uses: jurplel/install-qt-action@v2.13.2
@@ -63,7 +64,8 @@ jobs:
           arch:    '${{ env.arch }}'
           extra:   '--external 7z'
           tools:   'tools_ifw,4.0,qt.tools.ifw.40 tools_qtcreator,4.14.1-0,qt.tools.qtcreator'
-          setup-python: 'true'
+          # setup-python: 'true'
+      - run: dir 'D:\a\github-action-test\Qt'
           
       # - name: dirvs
       #   run: |
@@ -73,26 +75,27 @@ jobs:
       #   run: |
       #     set path=%path%;%qtdir%\bin;"C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\${{steps.dirvs.outputs.ver}}\bin\Hostx64\x64"
       #     set QMakeSpec=${{matrix.spec}}
+
       - uses: actions/checkout@v1
       - name: add cl.exe
         uses: ilammy/msvc-dev-cmd@v1
       - name: build
         run: qmake "CONFIG+=qtquickcompiler"
 
-      - uses: actions/checkout@v2
-      - name: Setup tmate session
-        uses: mxschmitt/action-tmate@v3
+      # - uses: actions/checkout@v2
+      # - name: Setup tmate session
+      #   uses: mxschmitt/action-tmate@v3
 
-      - run: set path=%path%;"D:\a\github-action-test\Qt\Tools\QtCreator\bin";
-      - run: jom.exe -f qmake_all && jom.exe
-      - name: upload module to releases
-        uses: Skycoder42/action-upload-release@master
-        with:
-          repo_token: ${{secrets.GITHUB_TOKEN}}
-          platform: ${{matrix.platform}}
-          asset_name: test-${{matrix.platform}}-${{matrix.version}}
-          tag: 'v0.0.1'
-          overwrite: true 
+      # - run: set path=%path%;"D:\a\github-action-test\Qt\Tools\QtCreator\bin";
+      # - run: jom.exe -f qmake_all && jom.exe
+      # - name: upload module to releases
+      #   uses: Skycoder42/action-upload-release@master
+      #   with:
+      #     repo_token: ${{secrets.GITHUB_TOKEN}}
+      #     platform: ${{matrix.platform}}
+      #     asset_name: test-${{matrix.platform}}-${{matrix.version}}
+      #     tag: 'v0.0.1'
+      #     overwrite: true 
 #   deploy:
 #     if: startsWith(github.ref, 'refs/tags/')
 #     needs: build
