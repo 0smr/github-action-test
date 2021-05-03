@@ -65,7 +65,7 @@ jobs:
           extra:   '--external 7z'
           tools:   'tools_ifw,4.0,qt.tools.ifw.40 tools_qtcreator,4.14.1-0,qt.tools.qtcreator'
           setup-python: 'true'
-      - run: ls -las ../Qt
+      - run: ls ../Qt
           
       # - name: dirvs
       #   run: |
