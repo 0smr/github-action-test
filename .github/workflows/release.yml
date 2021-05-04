@@ -87,6 +87,9 @@ jobs:
           windeployqt.exe --qmldir  $Qt5_Dir/qml github-action-test.exe
           zip github-action-test.zip *          
 
+# ------------ debug workflow using ssh ----------------
+      - name: Setup tmate session
+        uses: mxschmitt/action-tmate@v3
 # ------------ Upload to releases ----------------
       - name: Upload to releases
         uses: svenstaro/upload-release-action@v2
@@ -95,6 +98,3 @@ jobs:
           file: ${{github.workspace}}/deploy/github-action-test.zip
           asset_name: github-action-test-${{ matrix.platform }} #-${{ github.ref }}
           tag: v0.0.1 # ${{ github.ref }}
-# ------------ debug workflow using ssh ----------------
-#       - name: Setup tmate session
-#         uses: mxschmitt/action-tmate@v3
