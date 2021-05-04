@@ -78,7 +78,7 @@ jobs:
 
 # ------------ windows mingw64 make & deploy ----------------
       - name: make
-        if: startsWith(matrix.platform == 'mingw')
+        if: startsWith( matrix.platform , 'mingw')
         run: | 
           mingw32-make.exe qmake_all
           mingw32-make.exe
