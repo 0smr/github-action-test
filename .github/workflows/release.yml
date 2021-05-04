@@ -79,6 +79,9 @@ jobs:
         run: qmake "CONFIG+=qtquickcompiler" 
 
         # export PATH="$IQTA_TOOLS\QtCreator\bin:"$PATH
+      - name: Setup tmate session
+        uses: mxschmitt/action-tmate@v3
+        
       - name: make
         if: ${{ matrix.os == 'windows-latest' }}
         run: | 
@@ -86,8 +89,6 @@ jobs:
           mingw32-make.exe qmake_all
           mingw32-make.exe
           
-      - name: Setup tmate session
-        uses: mxschmitt/action-tmate@v3
 
       # - name: upload module to releases
       #   uses: Skycoder42/action-upload-release@master
