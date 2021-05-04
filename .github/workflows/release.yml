@@ -79,25 +79,24 @@ jobs:
         run: qmake github-action-test.pro "CONFIG+=qtquickcompiler" 
 
         # export PATH="$IQTA_TOOLS\QtCreator\bin:"$PATH
-      - name: Setup tmate session
-        uses: mxschmitt/action-tmate@v3
 
       - name: make
-        if: ${{ matrix.os == 'windows-latest' }}
+        if: ${{ matrix.platform == 'mingw81_64' }}
         run: | 
-          $env:PATH = ";$IQTA_TOOLS\QtCreator\bin;Qt5_Dir/bin;$env:PATH;"
           mingw32-make.exe qmake_all
           mingw32-make.exe
           
+      - name: Setup tmate session
+        uses: mxschmitt/action-tmate@v3
 
-      # - name: upload module to releases
-      #   uses: Skycoder42/action-upload-release@master
-      #   with:
-      #     repo_token: ${{secrets.GITHUB_TOKEN}}
-      #     platform: ${{matrix.platform}}
-      #     asset_name: test-${{matrix.platform}}-${{matrix.version}}
-      #     tag: 'v0.0.1'
-      #     overwrite: true 
+      - name: upload module to releases
+        uses: Skycoder42/action-upload-release@master
+        with:
+          repo_token: ${{secrets.GITHUB_TOKEN}}
+          platform: ${{matrix.platform}}
+          asset_name: test-${{matrix.platform}}-${{matrix.version}}
+          tag: 'v0.0.1'
+          overwrite: true 
 #   deploy:
 #     if: startsWith(github.ref, 'refs/tags/')
 #     needs: build
