@@ -71,7 +71,7 @@ jobs:
 #          cached:  ${{ steps.cache-qt.outputs.cache-hit }}
           
       - name: add cl.exe
-        if: startsWith( matrix.platform , 'windows')
+        if: contains( ${{ matrix.platform }} , 'windows')
         uses: ilammy/msvc-dev-cmd@v1
 
       - name: qmake
@@ -79,7 +79,7 @@ jobs:
 
 # ------------ windows mingw64 make & deploy ----------------
       - name: make
-        if: startsWith( matrix.os , 'mingw')
+        if: contains( ${{ matrix.os }} , 'mingw')
         run: | 
           mingw32-make.exe qmake_all
           mingw32-make.exe
