@@ -94,6 +94,6 @@ jobs:
         uses: svenstaro/upload-release-action@v2
         with:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
-          file: ${{github.workspace}}/deploy/github-action-test.zip
+          file: ${{github.workspace}}/deploy/github-action-test-${{ matrix.platform }}.zip
           asset_name: github-action-test-${{ matrix.platform }} #-${{ github.ref }}
           tag: v0.0.1 # ${{ github.ref }}
