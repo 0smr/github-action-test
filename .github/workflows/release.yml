@@ -84,11 +84,12 @@ jobs:
 
       - name: add cl.exe
         uses: ilammy/msvc-dev-cmd@v1
-      - name: build
-        run: qmake "CONFIG+=qtquickcompiler"
 
       - name: Setup tmate session
         uses: mxschmitt/action-tmate@v3
+        
+      - name: build
+        run: qmake "CONFIG+=qtquickcompiler"
 
       # - run: set path=%path%;"D:\a\github-action-test\Qt\Tools\QtCreator\bin";
       # - run: jom.exe -f qmake_all && jom.exe
