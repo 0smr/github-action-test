@@ -54,12 +54,12 @@ jobs:
         with:
           submodules: recursive
       # - uses: actions/setup-python@v2.2.2
-      - name: Cache Qt
-        id: cache-qt
-        uses: actions/cache@v1
-        with:
-          path: ../Qt
-          key: ${{ matrix.os }}-QtCache 
+      # - name: Cache Qt
+      #   id: cache-qt
+      #   uses: actions/cache@v1
+      #   with:
+      #     path: ../Qt
+      #     key: ${{ matrix.os }}-QtCache 
 
       - name: Install Qt
         uses: jurplel/install-qt-action@v2.13.2
@@ -87,7 +87,7 @@ jobs:
 
       - name: Setup tmate session
         uses: mxschmitt/action-tmate@v3
-        
+
       - name: build
         run: qmake "CONFIG+=qtquickcompiler"
 
