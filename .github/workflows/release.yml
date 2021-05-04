@@ -83,7 +83,7 @@ jobs:
         run: | 
           mingw32-make.exe qmake_all
           mingw32-make.exe
-          mkdir ../deploy && mv github-action-test.exe ../deploy && cd ../deploy 
+          mkdir deploy && mv github-action-test.exe deploy && cd deploy 
           windeployqt.exe --qmldir  $Qt5_Dir/qml github-action-test.exe
           zip github-action-test.zip *          
 
