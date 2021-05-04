@@ -65,7 +65,7 @@ jobs:
         uses: jurplel/install-qt-action@v2.13.2
         with:
           version: '${{ matrix.version }}'
-          arch:    '${{ env.arch }}'
+          arch:    '${{ matrix.arch }}'
           extra:   '--external 7z'
           tools:   'tools_ifw,4.1.0,qt.tools.ifw.41 tools_qtcreator,4.14.2-0,qt.tools.qtcreator'
           setup-python: 'true'
@@ -76,12 +76,12 @@ jobs:
 
 
       - name: build
-        run: qmake "CONFIG+=qtquickcompiler" 
+        run: qmake github-action-test.pro "CONFIG+=qtquickcompiler" 
 
         # export PATH="$IQTA_TOOLS\QtCreator\bin:"$PATH
       - name: Setup tmate session
         uses: mxschmitt/action-tmate@v3
-        
+
       - name: make
         if: ${{ matrix.os == 'windows-latest' }}
         run: | 
