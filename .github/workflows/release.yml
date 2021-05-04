@@ -17,7 +17,7 @@ jobs:
       fail-fast: false
       matrix:
         version:
-          - 5.15.0
+          - 5.15.2
           
         platform:
           # - gcc_64
@@ -42,12 +42,10 @@ jobs:
 #             os: windows-latest
 #             arch: win64_mingw81
 #             spec: win32-mingw
-#           - platform: clang_64
-#             os: macos-latest
           - platform: msvc2019_64
             os: windows-latest
-            arch: win64_msvc2019_64
             spec: win32-msvc
+            arch: win64_msvc2019_64
             
     runs-on: ${{matrix.os}}
     steps:
@@ -64,14 +62,15 @@ jobs:
           key: ${{ matrix.os }}-QtCache 
 
       - name: Install Qt
-        uses: jurplel/install-qt-action@v2.13.0
+        uses: jurplel/install-qt-action@v2.13.2
         with:
           version: '${{ matrix.version }}'
-          arch:    '${{ matrix.arch }}'
+          arch:    '${{ env.arch }}'
           extra:   '--external 7z'
-          tools:   'tools_ifw,4.0,qt.tools.ifw.40 tools_qtcreator,4.14.1-0,qt.tools.qtcreator'
+          tools:   'tools_ifw,4.1.0,qt.tools.ifw.41 tools_qtcreator,4.14.2-0,qt.tools.qtcreator'
           setup-python: 'true'
           cached:  ${{ steps.cache-qt.outputs.cache-hit }}
+          # tools-only: 'true'
       - run: ls ../Qt
           
       # - name: dirvs
