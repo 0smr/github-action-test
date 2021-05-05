@@ -81,9 +81,10 @@ jobs:
         run: | 
           mingw32-make.exe qmake_all
           mingw32-make.exe
-          mkdir deploy && mv release/github-action-test.exe deploy && cd deploy 
-          windeployqt.exe --qmldir  $Qt5_Dir/qml github-action-test.exe
-          powershell Compress-Archive * github-action-test-${{ matrix.platform }}.zip
+          mkdir deploy && mv release/github-action-test.exe deploy
+          windeployqt.exe --qmldir  $Qt5_Dir/qml github-action-test.exe 
+          cd deploy
+          powershell Compress-Archive * github-action-test-${{matrix.platform}}.zip
 
 # ------------ debug workflow using ssh ----------------
       - name: Setup tmate session
