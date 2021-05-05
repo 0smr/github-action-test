@@ -82,7 +82,7 @@ jobs:
           mingw32-make.exe qmake_all
           mingw32-make.exe
           mkdir deploy && mv release/github-action-test.exe deploy
-          windeployqt.exe --qmldir  $Qt5_Dir/qml deploy/github-action-test.exe 
+          windeployqt.exe --qmldir "../Qt/5.15.2/mingw81_64/qml" deploy/github-action-test.exe 
           cd deploy
           powershell Compress-Archive * github-action-test-${{matrix.platform}}.zip
 
