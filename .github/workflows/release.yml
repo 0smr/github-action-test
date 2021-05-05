@@ -2,8 +2,8 @@ name: CI build
 
 on:
   push:
-#     tags:
-#       - 'v*.*.*'
+     tags:
+       - 'v*.*.*'
 # ------------ enable manual rerun ----------------
   workflow_dispatch:
     inputs:
@@ -99,6 +99,6 @@ jobs:
         with:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
           file: ${{github.workspace}}/deploy/github-action-test-${{ matrix.platform }}.zip
-          asset_name: github-action-test-${{ matrix.platform }}.zip #-${{ github.ref }}
-          tag: 'v0.0.1' # ${{ github.ref }}
+          asset_name: github-action-test-${{ matrix.platform }}-${{ github.ref }}.zip
+          tag: ${{ github.ref }}
           overwrite: 'true'
