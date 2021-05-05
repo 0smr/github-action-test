@@ -83,8 +83,8 @@ jobs:
           mingw32-make.exe
           mkdir deploy && mv release/github-action-test.exe deploy
           windeployqt.exe --qmldir "../Qt/5.15.2/mingw81_64/qml" deploy/github-action-test.exe 
-          cp '../Qt/5.15.2/mingw81_64/bin/libgcc_s_seh-1.dll' .
-          cp '../Qt/5.15.2/mingw81_64/bin/libwinpthread-1.dll' .
+          cp '../Qt/5.15.2/mingw81_64/bin/libgcc_s_seh-1.dll' ./deploy/
+          cp '../Qt/5.15.2/mingw81_64/bin/libwinpthread-1.dll' ./deploy/
           cd deploy
           powershell Compress-Archive * github-action-test-${{matrix.platform}}.zip
 
