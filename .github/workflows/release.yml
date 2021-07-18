@@ -3,7 +3,9 @@ name: CI build
 on:
   push:
      tags:
-       - 'v*.*.*'
+       - v*             # Push events to v1 tag
+       - v*.* 
+       - v*.*.*
 # ------------ enable manual rerun ----------------
   workflow_dispatch:
     inputs:
