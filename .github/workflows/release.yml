@@ -69,11 +69,11 @@ jobs:
 #          cached:  ${{ steps.cache-qt.outputs.cache-hit }}
           
       - name: add cl.exe
-        if: contains( ${{ matrix.platform }} , 'mingw')
+        if: contains( ${{ matrix.platform }} , 'msvc')
         uses: ilammy/msvc-dev-cmd@v1
 
       - name: qmake
-        run: qmake github-action-test.pro "CONFIG+=qtquickcompiler" 
+        run: qmake ${{github.event.repository.name}}.pro "CONFIG+=qtquickcompiler" 
 
 # ------------ windows mingw64 make & deploy ----------------
       - name: make
@@ -81,13 +81,13 @@ jobs:
         run: | 
           mingw32-make.exe qmake_all
           mingw32-make.exe
-          mkdir deploy && mv release/github-action-test.exe deploy
-          windeployqt.exe --qmldir "../Qt/5.15.2/mingw81_64/qml" deploy/github-action-test.exe 
+          mkdir deploy && mv release/${{github.event.repository.name}}.exe deploy
+          windeployqt.exe --qmldir "../Qt/5.15.2/mingw81_64/qml" deploy/${{github.event.repository.name}}.exe 
           cp '../Qt/5.15.2/mingw81_64/bin/libgcc_s_seh-1.dll' ./deploy/
           cp '../Qt/5.15.2/mingw81_64/bin/libwinpthread-1.dll' ./deploy/
           cp '../Qt/5.15.2/mingw81_64/bin/libstdc++-6.dll' ./deploy/
           cd deploy
-          powershell Compress-Archive * github-action-test-${{matrix.platform}}.zip
+          powershell Compress-Archive * ${{github.event.repository.name}}-${{matrix.platform}}.zip
 
 # ------------ debug workflow using ssh ----------------
       - name: Setup tmate session
@@ -98,7 +98,7 @@ jobs:
         uses: svenstaro/upload-release-action@v2
         with:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
-          file: ${{github.workspace}}/deploy/github-action-test-${{ matrix.platform }}.zip
-          asset_name: github-action-test-${{ matrix.platform }}-${{ github.ref }}.zip
+          file: ${{github.workspace}}/deploy/${{github.event.repository.name}}-${{ matrix.platform }}.zip
+          asset_name: ${{github.event.repository.name}}-${{ matrix.platform }}-${{ github.ref }}.zip
           tag: ${{ github.ref }}
           overwrite: 'true'
